@@ -1,14 +1,16 @@
+'use client'; // Needed for useState and framer-motion
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import Link from "next/link"; // Import Link from next/link
 import { motion } from "framer-motion";
 import { Heart, ChevronRight, BookOpen, Sparkles, Smile } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+// import Header from "@/components/layout/Header"; // Removed
+// import Footer from "@/components/layout/Footer"; // Removed
 
 const features = [
+  // ... (features array remains the same)
   {
     title: "Share your journey",
     description:
@@ -29,17 +31,18 @@ const features = [
   },
 ];
 
-const Index = () => {
+const HomePage = () => { // Renamed component
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
-      <Header />
+      {/* <Header /> */}{/* Removed */}
 
       {/* Hero Section */}
       <section className="pt-32 pb-16 md:pt-40 md:pb-24">
         <Container>
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+            {/* ... (motion divs remain the same) ... */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -78,7 +81,7 @@ const Index = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4 w-full justify-center"
             >
-              <Link to="/journal">
+              <Link href="/journal"> {/* Changed to href */}
                 <Button
                   className="rounded-full bg-slate-900 text-white hover:bg-slate-800 px-8 py-6 h-auto text-base font-medium shadow-sm"
                   onMouseEnter={() => setIsHovered(true)}
@@ -93,7 +96,7 @@ const Index = () => {
                 </Button>
               </Link>
 
-              <Link to="/about">
+              <Link href="/about"> {/* Changed to href */}
                 <Button
                   variant="outline"
                   className="rounded-full border-slate-300 text-slate-700 hover:text-slate-900 hover:bg-slate-100 hover:border-slate-400 px-8 py-6 h-auto text-base font-medium"
@@ -109,7 +112,8 @@ const Index = () => {
       {/* Features Section */}
       <section className="py-16 md:py-24 bg-white">
         <Container>
-          <div className="text-center mb-16">
+           {/* ... (feature section content remains the same) ... */}
+           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
               Journal together, grow together
             </h2>
@@ -144,6 +148,7 @@ const Index = () => {
       {/* CTA Section */}
       <section className="py-16 md:py-24">
         <Container>
+          {/* ... (CTA section content remains the same) ... */}
           <div className="bg-gradient-to-br from-slate-100 to-slate-50 rounded-3xl p-8 md:p-12 flex flex-col items-center text-center">
             <Smile className="h-12 w-12 text-slate-900 mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 max-w-2xl">
@@ -152,7 +157,7 @@ const Index = () => {
             <p className="text-lg text-slate-600 mb-8 max-w-2xl">
               Create a beautiful digital keepsake of your relationship that you'll cherish for years to come.
             </p>
-            <Link to="/journal">
+            <Link href="/journal"> {/* Changed to href */}
               <Button className="rounded-full bg-slate-900 text-white hover:bg-slate-800 px-8 py-6 h-auto text-base font-medium shadow-sm">
                 <span>Begin Your Journey</span>
                 <ChevronRight className="ml-2 h-5 w-5" />
@@ -162,9 +167,9 @@ const Index = () => {
         </Container>
       </section>
 
-      <Footer />
+      {/* <Footer /> */}{/* Removed */}
     </div>
   );
 };
 
-export default Index;
+export default HomePage; // Changed export 

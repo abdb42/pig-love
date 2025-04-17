@@ -1,11 +1,12 @@
+'use client'; // Needed for useState, useEffect, framer-motion, dialog
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // Added React import
 import { motion, AnimatePresence } from "framer-motion";
 import { PlusCircle, SlidersHorizontal, Book } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+// import Header from "@/components/layout/Header"; // Removed
+// import Footer from "@/components/layout/Footer"; // Removed
 import JournalCard from "@/components/journal/JournalCard";
 import NewEntryForm from "@/components/journal/NewEntryForm";
 import EntryDetail from "@/components/journal/EntryDetail";
@@ -14,6 +15,7 @@ import type { JournalEntry } from "@/components/journal/JournalCard";
 
 // Sample journal entries
 const sampleEntries: JournalEntry[] = [
+  // ... (sampleEntries array remains the same)
   {
     id: "1",
     title: "Our First Date",
@@ -56,10 +58,17 @@ const sampleEntries: JournalEntry[] = [
   },
 ];
 
-const Journal = () => {
-  const [entries, setEntries] = useState<JournalEntry[]>(sampleEntries);
+const JournalPage = () => { // Renamed component
+  const [entries, setEntries] = useState<JournalEntry[]>([]);
   const [isNewEntryOpen, setIsNewEntryOpen] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
+
+  // Load entries on mount (client-side only)
+  useEffect(() => {
+    // In a real app, fetch entries from an API here
+    // For now, just use the sample data
+    setEntries(sampleEntries);
+  }, []);
 
   const handleNewEntry = (entry: {
     title: string;
@@ -87,7 +96,7 @@ const Journal = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
-      <Header />
+      {/* <Header /> */}{/* Removed */}
 
       <main className="flex-grow pt-32 pb-16">
         <Container>
@@ -100,6 +109,7 @@ const Journal = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
               >
+                {/* ... (rest of the content remains the same) ... */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-10">
                   <div>
                     <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">
@@ -190,9 +200,9 @@ const Journal = () => {
         </DialogContent>
       </Dialog>
 
-      <Footer />
+      {/* <Footer /> */}{/* Removed */}
     </div>
   );
 };
 
-export default Journal;
+export default JournalPage; // Changed export 

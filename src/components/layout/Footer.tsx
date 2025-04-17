@@ -1,6 +1,6 @@
-
+import React from "react";
 import { Heart } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,17 +27,17 @@ const Footer = () => {
             <h4 className="text-sm font-semibold text-slate-900 mb-4">Navigation</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                <Link href="/" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/journal" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                <Link href="/journal" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
                   Journal
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                <Link href="/about" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
                   About
                 </Link>
               </li>
@@ -49,17 +49,17 @@ const Footer = () => {
             <h4 className="text-sm font-semibold text-slate-900 mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/faq" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                <Link href="/faq" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                <Link href="/privacy" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
                   Privacy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+                <Link href="/terms" className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
                   Terms
                 </Link>
               </li>
@@ -94,10 +94,10 @@ const Footer = () => {
             © {currentYear} Together. All rights reserved.
           </p>
           <div className="flex items-center space-x-4">
-            <Link to="/privacy" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">
+            <Link href="/privacy" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">
+            <Link href="/terms" className="text-xs text-slate-500 hover:text-slate-900 transition-colors">
               Terms of Service
             </Link>
           </div>

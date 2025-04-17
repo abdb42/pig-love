@@ -1,6 +1,8 @@
+'use client';
 
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import { Menu, X, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -8,7 +10,7 @@ import { cn } from "@/lib/utils";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +24,7 @@ const Header = () => {
   // Close mobile menu when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
-  }, [location.pathname]);
+  }, [pathname]);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -41,7 +43,7 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link
-          to="/"
+          href="/"
           className="flex items-center space-x-2 font-display text-xl font-medium"
         >
           <Heart className="h-6 w-6 text-slate-800 stroke-[1.5px]" />
@@ -55,10 +57,10 @@ const Header = () => {
           {navLinks.map((link) => (
             <Link
               key={link.path}
-              to={link.path}
+              href={link.path}
               className={cn(
                 "text-sm font-medium transition-all duration-200 relative group",
-                location.pathname === link.path
+                pathname === link.path
                   ? "text-slate-900"
                   : "text-slate-600 hover:text-slate-900"
               )}
@@ -67,7 +69,7 @@ const Header = () => {
               <span
                 className={cn(
                   "absolute bottom-0 left-0 w-full h-[1px] bg-slate-900 transform origin-left transition-transform duration-300",
-                  location.pathname === link.path
+                  pathname === link.path
                     ? "scale-x-100"
                     : "scale-x-0 group-hover:scale-x-100"
                 )}
@@ -77,12 +79,14 @@ const Header = () => {
         </nav>
 
         <div className="hidden md:flex items-center space-x-4">
-          <Button
-            variant="default"
-            className="rounded-full bg-slate-900 text-white hover:bg-slate-800 px-5 py-2 h-auto shadow-sm"
-          >
-            New Entry
-          </Button>
+          <Link href="/journal">
+            <Button
+              variant="default"
+              className="rounded-full bg-slate-900 text-white hover:bg-slate-800 px-5 py-2 h-auto shadow-sm"
+            >
+              New Entry
+            </Button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -106,10 +110,10 @@ const Header = () => {
           {navLinks.map((link) => (
             <Link
               key={link.path}
-              to={link.path}
+              href={link.path}
               className={cn(
                 "text-lg font-medium py-2 w-full text-center transition-colors duration-200",
-                location.pathname === link.path
+                pathname === link.path
                   ? "text-slate-900"
                   : "text-slate-600 hover:text-slate-900"
               )}
@@ -118,12 +122,14 @@ const Header = () => {
             </Link>
           ))}
           <div className="pt-4 w-full">
-            <Button
-              variant="default"
-              className="rounded-full w-full bg-slate-900 text-white hover:bg-slate-800 px-5 py-6 h-auto"
-            >
-              New Entry
-            </Button>
+            <Link href="/journal">
+              <Button
+                variant="default"
+                className="rounded-full w-full bg-slate-900 text-white hover:bg-slate-800 px-5 py-6 h-auto"
+              >
+                New Entry
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

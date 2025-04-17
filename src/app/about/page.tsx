@@ -1,11 +1,13 @@
+'use client'; // Needed for framer-motion
 
+import React from "react"; // Added React import
 import { motion } from "framer-motion";
 import { Container } from "@/components/ui/container";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+// import Header from "@/components/layout/Header"; // Removed
+// import Footer from "@/components/layout/Footer"; // Removed
 import { Heart, Book, Users, MessageCircle } from "lucide-react";
 
-const About = () => {
+const AboutPage = () => { // Renamed component
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -17,7 +19,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-white">
-      <Header />
+      {/* <Header /> */}{/* Removed */}
 
       <main className="flex-grow pt-32 pb-16">
         <Container>
@@ -27,6 +29,7 @@ const About = () => {
             variants={fadeIn}
             className="max-w-3xl mx-auto"
           >
+            {/* ... (rest of the content remains the same) ... */}
             <div className="text-center mb-12">
               <div className="mb-6 inline-flex items-center px-3 py-1 rounded-full bg-slate-100 text-slate-800 text-sm font-medium">
                 <Heart className="h-4 w-4 mr-2 text-rose-500" />
@@ -158,9 +161,9 @@ const About = () => {
         </Container>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}{/* Removed */}
     </div>
   );
 };
 
-export default About;
+export default AboutPage; // Changed export 
